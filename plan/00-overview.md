@@ -38,6 +38,9 @@ Key rule: the browser only ever talks to dan-land. All service credentials and L
 - [ ] One or two more from the wishlist ([03-dashboard-ideas.md](03-dashboard-ideas.md))
 - [ ] Dashboard grid layout with per-service cards
 
+### Someday / maybe
+- Android TV companion app (see parking-lot notes in [03-dashboard-ideas.md](03-dashboard-ideas.md)) — build the web app API-first so this stays easy
+
 ### M3 — Mega dashboard
 - [ ] More integrations, configurable card layout
 - [ ] Health/status strip (which services are up)

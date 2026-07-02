@@ -45,6 +45,15 @@ Parking lot for what the hub could surface. Each integration becomes a module un
 - Global search: "where is X" across Plex libraries / *arr
 - Mobile layout that doesn't suck — couch usage is the main usage
 
+## Android TV app (parked — Dan is mulling it)
+
+A companion Android TV app baked into this project. Implications to keep in mind while building the web app, so we don't paint ourselves into a corner:
+
+- A TV app would consume dan-land as an **API** — keep integration fetchers cleanly separated from React components so route handlers can expose the same data as JSON later.
+- Auth from a TV can't do the browser redirect dance; Plex's PIN flow is actually TV-friendly (show a code, approve on phone) — the same `/api/auth` machinery could grow a device-code variant.
+- Likely stack when it happens: Kotlin + Compose for TV, talking to dan-land over the LAN/Tailscale.
+- Not roadmapped; revisit after M2.
+
 ## Open questions
 
 - Which services are actually running on the box today? (Inventory needed before M2 planning.)
