@@ -1,0 +1,24 @@
+# Reference compose for running dan-land on Unraid (Compose Manager plugin),
+# or as documentation of the intended container config for a manual Docker template.
+# See plan/02-deployment.md.
+
+services:
+  dan-land:
+    image: ghcr.io/OWNER/dan-land:latest # set OWNER to the GitHub user/org
+    container_name: dan-land
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      PLEX_CLIENT_ID: ${PLEX_CLIENT_ID}
+      SESSION_SECRET: ${SESSION_SECRET}
+      APP_URL: ${APP_URL}
+      PLEX_ALLOWED_USERS: ${PLEX_ALLOWED_USERS}
+      PLEX_SERVER_URL: ${PLEX_SERVER_URL}
+    # Join the same custom network as Plex/other services to reach them by
+    # container name instead of host IPs:
+    # networks: [homelab]
+
+# networks:
+#   homelab:
+#     external: true
