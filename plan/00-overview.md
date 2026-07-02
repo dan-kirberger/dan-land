@@ -30,14 +30,14 @@ Key rule: the browser only ever talks to dan-land. All service credentials and L
 - [ ] First deploy to Unraid, reachable on LAN
 
 ### M1 — App shell
-- [ ] Shell layout: nav, empty dashboard landing page, mobile-first
+- [x] Shell layout: header, dashboard landing page, mobile-first, dark-only
 - ~~Plex auth~~ — cut 2026-07-02; design parked in [01-plex-auth.md](01-plex-auth.md)
 
 ### M2 — First integrations
-- [ ] Integration module pattern under `src/lib/integrations/`
-- [ ] Plex: now playing, recently added
+- [x] Integration module pattern under `src/lib/integrations/` (`IntegrationResult`: disabled / unreachable / ok)
+- [x] Plex: now playing, recently added (+ artwork proxy at `/api/plex/image` so the token/LAN URL stay server-side) — *pending live verification against the real server*
 - [ ] One or two more from the wishlist ([03-dashboard-ideas.md](03-dashboard-ideas.md))
-- [ ] Dashboard grid layout with per-service cards
+- [x] Dashboard grid layout with per-service cards (fixed grid, Suspense-streamed)
 
 ### Someday / maybe
 - Android TV companion app (see parking-lot notes in [03-dashboard-ideas.md](03-dashboard-ideas.md)) — build the web app API-first so this stays easy
