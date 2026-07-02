@@ -21,7 +21,7 @@ Unraid ── pulls new image (manual "force update" or auto-updater) ──> co
 
 ### GHCR visibility
 
-First push creates the package as **private**. Either make the package public (Settings on the package page) or add a registry login on Unraid (`docker login ghcr.io` with a read-only PAT). Private + PAT is the sane default for a homelab app.
+**Decision (2026-07-02): public.** First push creates the package as private; flip it to public on the package's settings page (one-time manual step — GitHub has no API for it). Until then pulls from Unraid would need a login, but that doesn't matter yet: **Unraid deployment is deferred until the app is more mature** (auth + first cards landed, likely post-M2). Dev happens via `/local-run` on Dan's machine in the meantime.
 
 ## Unraid setup
 
