@@ -36,4 +36,4 @@ If the argument is `stop`: run `docker rm -f dan-land-local`, confirm, and stop 
 
 - Container name is always `dan-land-local`, image tag `dan-land:local` — never push this tag.
 - If the phone can't reach it but localhost works, Windows Firewall is blocking Docker's port proxy; allow inbound TCP 3000 on the Private profile.
-- Once auth lands: `APP_URL` in `.env.local` must be `http://<LAN-IP>:3000` for the Plex login redirect to come back to the phone correctly.
+- Phone testing also works over Tailscale: `http://moneypit.pig-halibut.ts.net:3000` (Dan's dev PC's tailnet name).

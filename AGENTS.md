@@ -6,12 +6,12 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 # dan-land
 
-A personal hub / mega-dashboard for Dan's Unraid homelab. Single-user-ish app (Dan + maybe family), authenticated via Plex OAuth, surfacing the services running on the Unraid box.
+A personal hub / mega-dashboard for Dan's Unraid homelab: read-only live data from the services on the Unraid box, with links out to the "real" tools for changes.
 
 ## Stack & deployment shape
 
 - **Next.js** (App Router, `src/` layout, TypeScript, Tailwind v4). `next.config.ts` sets `output: "standalone"` — required by the Dockerfile; don't remove it.
-- **Auth: Plex PIN flow.** Plex does not do standard OAuth2 — it's a PIN-based flow (create PIN → send user to `app.plex.tv/auth` → poll the PIN for an auth token). See `plan/01-plex-auth.md` before touching auth code.
+- **No auth, by design.** The app is read-only and reachable only on the LAN/tailnet — the network is the auth boundary, and it must **never be exposed to the public internet**. Don't add login features; if a task seems to need auth (write actions, public exposure), stop and surface it — there's a parked design in `plan/01-plex-auth.md`.
 - **Runs as a Docker container on Unraid.** Built by GitHub Actions, pushed to GHCR, pulled onto the Unraid server. Assume the app runs on the *same LAN* as the services it talks to — internal service URLs (e.g. `http://192.168.x.x:port` or Docker network hostnames) are configured via env vars, never hardcoded.
 - **Node 24 / npm.** Dev on Windows, deploy on Linux — avoid platform-specific scripts; keep npm scripts cross-platform.
 

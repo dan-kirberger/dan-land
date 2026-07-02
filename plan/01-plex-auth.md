@@ -1,4 +1,6 @@
-# Plex Authentication
+# Plex Authentication — PARKED (2026-07-02)
+
+> **Not being built.** Dan decided the app is read-only and LAN/Tailscale-only, so the network is the auth boundary — see the security model in [00-overview.md](00-overview.md). This design is kept because it's done and doesn't rot. Triggers to un-park: exposing the app beyond the tailnet, or adding write actions (e.g. approving Overseerr requests). The PIN flow here is also the natural basis for Android-TV device-code login if that app happens.
 
 Plex does **not** implement standard OAuth2/OIDC. It uses a PIN-based flow against `plex.tv`. No client secret, no redirect-URI registration, no app registration at all — the app just needs a stable, self-chosen **client identifier**.
 
