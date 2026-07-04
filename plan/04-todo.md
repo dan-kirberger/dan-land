@@ -4,17 +4,17 @@ Concrete near-term tasks. This is the "what's next" doc — higher-level status/
 
 ## Right now: M2 media-stack integrations
 
-Client/fetcher layer for all five services is done (`src/lib/integrations/{sabnzbd,tautulli,radarr,sonarr,seerr}/`, plus shared `http.ts` and `servarr.ts`). Remaining:
+Client/fetcher layer for all five services is done (`src/lib/integrations/{sabnzbd,tautulli,radarr,sonarr,seerr}/`, plus shared `http.ts` and `servarr.ts`). Card components and `page.tsx` are done too. Remaining:
 
-- [ ] Build card components (follow the `Card`/`CardMessage`/`CardSkeleton` pattern in `src/components/cards/Card.tsx`):
-  - [ ] `SabnzbdCard` — download queue
-  - [ ] `TautulliNowPlayingCard` / `TautulliRecentlyAddedCard`
-  - [ ] `RadarrCard` — queue + upcoming
-  - [ ] `SonarrCard` — queue + upcoming
-  - [ ] `SeerrCard` — pending requests
-- [ ] Fix `src/app/page.tsx` — still imports the deleted Plex cards (`PlexNowPlayingCard`, `PlexRecentlyAddedCard`, `plexEnabled`), so the app currently does not build. Rewrite to render the five new cards in `Suspense`, with an "any integration enabled" check across all five services.
+- [x] Build card components (follow the `Card`/`CardMessage`/`CardSkeleton` pattern in `src/components/cards/Card.tsx`):
+  - [x] `SabnzbdCard` — download queue
+  - [x] `TautulliNowPlayingCard` / `TautulliRecentlyAddedCard`
+  - [x] `RadarrCard` — queue + upcoming
+  - [x] `SonarrCard` — queue + upcoming
+  - [x] `SeerrCard` — pending requests
+- [x] Fix `src/app/page.tsx` — rewritten to render the five new cards in `Suspense`, with an "any integration enabled" check across all five services.
 - [x] `.env.example` updated for the five services
-- [ ] `npm run lint && npm run build` — verify clean after the above
+- [x] `npm run lint && npm run build` — verified clean
 - [ ] Rebuild/relaunch local Docker container (`/local-run`) and check the empty state (or live data once `.env.local` is filled in)
 - [ ] Commit + push (already durably authorized — see memory)
 

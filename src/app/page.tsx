@@ -1,14 +1,27 @@
 import { Suspense } from "react";
 import { CardSkeleton } from "@/components/cards/Card";
-import { PlexNowPlayingCard } from "@/components/cards/PlexNowPlayingCard";
-import { PlexRecentlyAddedCard } from "@/components/cards/PlexRecentlyAddedCard";
-import { plexEnabled } from "@/lib/integrations/plex/client";
+import { SabnzbdCard } from "@/components/cards/SabnzbdCard";
+import { TautulliNowPlayingCard } from "@/components/cards/TautulliNowPlayingCard";
+import { TautulliRecentlyAddedCard } from "@/components/cards/TautulliRecentlyAddedCard";
+import { RadarrCard } from "@/components/cards/RadarrCard";
+import { SonarrCard } from "@/components/cards/SonarrCard";
+import { SeerrCard } from "@/components/cards/SeerrCard";
+import { sabnzbdEnabled } from "@/lib/integrations/sabnzbd/client";
+import { tautulliEnabled } from "@/lib/integrations/tautulli/client";
+import { radarrEnabled } from "@/lib/integrations/radarr/client";
+import { sonarrEnabled } from "@/lib/integrations/sonarr/client";
+import { seerrEnabled } from "@/lib/integrations/seerr/client";
 
 // Live homelab data — never prerender
 export const dynamic = "force-dynamic";
 
 export default function Dashboard() {
-  const anyIntegration = plexEnabled();
+  const anyIntegration =
+    sabnzbdEnabled() ||
+    tautulliEnabled() ||
+    radarrEnabled() ||
+    sonarrEnabled() ||
+    seerrEnabled();
 
   if (!anyIntegration) {
     return (
@@ -27,10 +40,22 @@ export default function Dashboard() {
   return (
     <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
       <Suspense fallback={<CardSkeleton title="Plex — Now Playing" />}>
-        <PlexNowPlayingCard />
+        <TautulliNowPlayingCard />
       </Suspense>
       <Suspense fallback={<CardSkeleton title="Plex — Recently Added" />}>
-        <PlexRecentlyAddedCard />
+        <TautulliRecentlyAddedCard />
+      </Suspense>
+      <Suspense fallback={<CardSkeleton title="SABnzbd — Queue" />}>
+        <SabnzbdCard />
+      </Suspense>
+      <Suspense fallback={<CardSkeleton title="Seerr — Pending Requests" />}>
+        <SeerrCard />
+      </Suspense>
+      <Suspense fallback={<CardSkeleton title="Radarr" />}>
+        <RadarrCard />
+      </Suspense>
+      <Suspense fallback={<CardSkeleton title="Sonarr" />}>
+        <SonarrCard />
       </Suspense>
     </div>
   );
