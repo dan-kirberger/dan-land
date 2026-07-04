@@ -15,22 +15,20 @@ Parking lot for what the hub could surface. Each integration becomes a module un
 
 ## Wishlist (roughly by expected payoff)
 
-### Plex (first, since we already hold a token)
-- Now playing: who's watching what, progress, transcode vs direct play
-- Recently added across libraries
-- Maybe: library stats, on-deck for me
+### ~~Plex (direct)~~ — not viable, cut 2026-07-02
+Plex Media Server isn't reachable over Tailscale; client access goes through plex.tv's relay/handoff to the local server, which this app can't ride along on. **Tautulli substitutes for this** since it talks to the local Plex server directly — now playing, recently added, and library data all come from Tautulli's API instead.
+
+### M2 media stack (in progress)
+- **Tautulli**: now playing, recently added (covers what direct Plex would have shown)
+- **SABnzbd**: download queue
+- **Radarr** / **Sonarr**: queue + upcoming (via shared `servarr()` client factory, both use the same `/api/v3` shape)
+- **Seerr** (Overseerr-compatible): pending requests
 
 ### Unraid system
 - Array status, disk usage/temps, parity check progress
 - CPU/RAM load
 - Docker container list with up/down state
 - Source options: Unraid's GraphQL API (Connect plugin), or a Glances/Netdata container as the metrics source. **Decide when we get here.**
-
-### Downloads / media pipeline (if/which of these run on the box — confirm)
-- Sonarr/Radarr: queue, upcoming, recent grabs, health warnings
-- qBittorrent/SAB: active downloads, speeds
-- Overseerr/Jellyseerr: pending requests (with approve button?)
-- Tautulli: watch history/stats (some overlap with direct Plex data — pick one source per card)
 
 ### Network / infra
 - Pi-hole / AdGuard: blocked %, top clients
@@ -56,6 +54,4 @@ A companion Android TV app baked into this project. Implications to keep in mind
 
 ## Open questions
 
-- Which services are actually running on the box today? (Inventory needed before M2 planning.)
-- One shared "server token" per service vs per-user — services like *arr only have API keys, so server-side keys it is; Plex acts on the logged-in user's own token.
 - Card layout: fixed grid first; drag-and-drop configurable later if it earns it.
